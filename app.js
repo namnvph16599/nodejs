@@ -16,9 +16,10 @@ const check = (req, res, next) => {
 
 // app.use(check);
 // app.use((req, res) => {
-//   console.log("Buoscw 2");
-// });
-
+  //   console.log("Buoscw 2");
+  // });
+  
+  //middleware : check xem có cho làm công việc tiếp theo hay không 
 app.get("/", (req, res) => {
  res.send("<h1>Home page</h1>")
 });
@@ -26,10 +27,15 @@ app.get("/products", (req, res) => {
   const products = [
     { id: 1, name: "Products 1" },
     { id: 2, name: "Products 2" },
+    { id: 3, name: "Products 3" },
   ];
   res.json(products);
 });
-//middleware
+
+const PORT = 3001;
+app.listen(PORT, () => {
+  console.log("server is running", PORT);
+});
 
 // const server = http.createServer((req, res) => {
 //   if (req.url === "/") {
@@ -46,8 +52,3 @@ app.get("/products", (req, res) => {
 //     console.log("Not url nhes");
 //   }
 // });
-
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log("server is running", PORT);
-});
