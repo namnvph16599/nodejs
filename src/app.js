@@ -1,15 +1,30 @@
 import express from "express";
-import cors from "cors"
+import cors from "cors";
 import morgan from "morgan";
-import productsRouter from "../routes/products"
+//
+import mongoose from "mongoose";
+//router
+import productsRouter from "../routes/products";
+
+  
 const app = express();
 
-//middleware(ở giữa) : check xem có cho làm công việc tiếp theo hay không 
+//middleware(ở giữa) : check xem có cho làm công việc tiếp theo hay không
 app.use(cors()); //cho pheps client truy cập vào api
-app.use(morgan('tiny')); //sử dụng morgan để log ra thông tin khi get
-app.use(express.json()) // convert sang json 
-app.use(productsRouter)
+app.use(morgan("tiny")); //sử dụng morgan để log ra thông tin khi get
+app.use(express.json()); //convert sang json
 
+//router
+app.use("/api", productsRouter);
+
+//connect db
+mongoose.connect("mongodb://127.0.0.1:27017/we16309")
+  .then(() => {
+    console.log("Ket noi thanh cong");
+  })
+  .catch((err) => console.log(err));
+
+//conection
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log("server is running", PORT);
