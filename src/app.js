@@ -5,7 +5,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 //router
 import productsRouter from "../routes/products";
-
+import postRouter from "../routes/post"
   
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.json()); //convert sang json
 
 //router
 app.use("/api", productsRouter);
-
+app.use("/api", postRouter);
 //connect db
 mongoose.connect("mongodb://127.0.0.1:27017/we16309")
   .then(() => {
