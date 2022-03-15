@@ -1,11 +1,4 @@
-import mongoose from "mongoose";
-
-const Post = mongoose.model("Post", {
-  title: String,
-  content: String,
-  created_at: String,
-  image: String,
-});
+import Post from "../model/post";
 
 //method
 
