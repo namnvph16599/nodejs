@@ -29,7 +29,7 @@ export const get = async (req, res) => {
   //   }
   // });
   try {
-    const products = await Product.find({ _id: req.params.id });
+    const products = await Product.findOne({ _id: req.params.id });
     res.json(products);
   } catch (err) {
     res.status(400).json({
@@ -54,10 +54,7 @@ export const post = async (req, res) => {
 export const remove = async (req, res) => {
   // res.json(products.filter((item) => item.id !== +req.params.id));
   try {
-    const products = await Product.remove(
-      { _id: req.params.id },
-      { justOne: true }
-    );
+    const products = await Product.findOneAndDelete({ _id: req.params.id });
     res.json(products);
   } catch (err) {
     res.status(404).json({
@@ -68,23 +65,12 @@ export const remove = async (req, res) => {
 
 //method put
 export const put = async (req, res) => {
-  // res.json(
-  //   products.map((item) => (item.id == req.params.id ? req.body : item))
-  // );
+  const condition = { _id: req.params.id };
+  const doc = req.body;
+  const option = { new: true };
   try {
-    const products = await Product.updateOne(
-      { _id: req.params.id }, //obj chứa điều kiện để update
-      {
-        $set: {
-          name: req.body.name,
-          price: req.body.price,
-          image: req.body.image,
-          cateId: req.body.cateId,
-          description: req.body.description,
-        },
-      }
-    );
-    res.json(req.body);
+    const product = await Product.findOneAndUpdate(condition, doc, option);
+    res.json(product);
   } catch (err) {
     res.status(400).json({
       message: "Cập nhật thất bại !",
