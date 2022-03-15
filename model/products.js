@@ -24,7 +24,7 @@ const productsShema = new Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true } //thuộc tính lấy ra create at khi thêm sp và update at khi sửa
 );
 
 export default mongoose.model("Product", productsShema);
