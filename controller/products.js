@@ -1,12 +1,4 @@
-import mongoose from "mongoose";
-//khowir taoj models
-const Product = mongoose.model("Product", {
-  name: String,
-  price: Number,
-  image: String,
-  cateId: Number,
-  description: String,
-});
+import Product from "../model/products";
 
 //method
 
