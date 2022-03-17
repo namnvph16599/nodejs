@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 //router
 import productsRouter from "../routes/products";
 import postRouter from "../routes/post"
-  
+import userRouter from "../routes/user"
 const app = express();
 
 //middleware(ở giữa) : check xem có cho làm công việc tiếp theo hay không
@@ -17,6 +17,8 @@ app.use(express.json()); //convert sang json
 //router
 app.use("/api", productsRouter);
 app.use("/api", postRouter);
+app.use("/api", userRouter);
+
 //connect db
 mongoose.connect("mongodb://127.0.0.1:27017/we16309")
   .then(() => {
