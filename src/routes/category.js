@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllWithProducts, post, put, remove } from "../../controller/category";
+import { getAllWithProducts, post, put, remove } from "../controller/category";
 import { checkAuth } from "../middleware/checkAuth";
 const router = Router();
 

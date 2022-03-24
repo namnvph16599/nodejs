@@ -4,10 +4,10 @@ import morgan from "morgan";
 //
 import mongoose from "mongoose";
 //router
-import productsRouter from "../routes/products";
-import postRouter from "../routes/post";
-import userRouter from "../routes/user";
-import categoryRouter from "../routes/category";
+import productsRouter from "./routes/products";
+import postRouter from "./routes/post";
+import userRouter from "./routes/user";
+import categoryRouter from "./routes/category";
 
 const app = express();
 

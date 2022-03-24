@@ -1,4 +1,4 @@
-import Post from "../src/model/post";
+import Post from "../model/post";
 
 //method
 
