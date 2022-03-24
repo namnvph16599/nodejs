@@ -5,8 +5,10 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 //router
 import productsRouter from "../routes/products";
-import postRouter from "../routes/post"
-import userRouter from "../routes/user"
+import postRouter from "../routes/post";
+import userRouter from "../routes/user";
+import categoryRouter from "../routes/category";
+
 const app = express();
 
 //middleware(ở giữa) : check xem có cho làm công việc tiếp theo hay không
@@ -18,9 +20,11 @@ app.use(express.json()); //convert sang json
 app.use("/api", productsRouter);
 app.use("/api", postRouter);
 app.use("/api", userRouter);
+app.use("/api", categoryRouter);
 
 //connect db
-mongoose.connect("mongodb://127.0.0.1:27017/we16309")
+mongoose
+  .connect("mongodb://127.0.0.1:27017/we16309")
   .then(() => {
     console.log("Ket noi thanh cong");
   })

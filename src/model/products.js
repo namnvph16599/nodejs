@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, ObjectId } from "mongoose";
 
 const productsShema = new Schema(
   {
@@ -15,13 +15,13 @@ const productsShema = new Schema(
       type: String,
       required: true,
     },
-    cateId: {
-      type: Number,
-      required: true,
-    },
     description: {
       type: String,
       required: true,
+    },
+    category: {
+      type: ObjectId,
+      ref: "Category",
     },
   },
   { timestamps: true } //thuộc tính lấy ra create at khi thêm sp và update at khi sửa
