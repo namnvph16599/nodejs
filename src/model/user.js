@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
+import { createHmac } from "crypto";
 const userSchema = new Schema(
   {
     email: {
@@ -7,7 +7,7 @@ const userSchema = new Schema(
       required: true,
     },
     password: {
-      type: Number,
+      type: String,
       required: true,
       minLength: 8,
     },
@@ -16,15 +16,30 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
-    phone: {
-      type: Number,
-      minLength: 10,
-    },
-    address: {
-      type: String,
-    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("user", userSchema);
+// method ma hoa password
+userSchema.methods = {
+  encryPassword(password) {
+    if (!password) return;
+    try {
+      return createHmac("sha256", "040202").update(password).digest("hex");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  authenticate(password) {
+    return this.password == this.encryPassword(password);
+  },
+};
+
+// middware truoc khi exec .save() thi chay middware sau
+
+userSchema.pre("save", function (next) {
+  this.password = this.encryPassword(this.password);
+  next();
+});
+
+export default mongoose.model("User", userSchema);
