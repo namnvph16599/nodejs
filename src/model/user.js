@@ -16,6 +16,10 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
+    role: {
+      type: String,
+      default: 0, 
+    },
   },
   { timestamps: true }
 );
