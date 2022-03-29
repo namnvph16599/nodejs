@@ -8,7 +8,7 @@ const productsShema = new Schema(
       required: true,
     },
     price: {
-      type: Number,
+      type: String,
       required: true,
     },
     image: {
@@ -17,12 +17,11 @@ const productsShema = new Schema(
     },
     description: {
       type: String,
-      required: true,
-    },
-    category: {
-      type: ObjectId,
-      ref: "Category",
-    },
+    }
+    // category: {
+    //   type: ObjectId,
+    //   ref: "Category",
+    // },
   },
   { timestamps: true } //thuộc tính lấy ra create at khi thêm sp và update at khi sửa
 );

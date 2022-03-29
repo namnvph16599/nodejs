@@ -1,22 +1,23 @@
 import { Router } from "express";
 import { get, getAll, post, put, remove } from "../controller/products";
-import { checkAuth } from "../middleware/checkAuth";
+import { isAdmin, userById } from "../controller/user";
+import { checkAuth, isAuth, requireSignin } from "../middleware/checkAuth";
 const router = Router();
-
 
 //get products all
 router.get("/products", checkAuth, getAll);
 
 //get products id
-router.get("/product/:id", checkAuth, get);
+router.get("/products/:id", checkAuth, get);
 
 //Post Product
-router.post("/product", checkAuth, post);
+router.post("/products/:userId", userById, requireSignin, isAuth, isAdmin, post);
 
 //delete
-router.delete("/product/:id", checkAuth, remove);
+router.delete("/products/:id", checkAuth, remove);
 
 //put products
-router.put("/product/:id", checkAuth, put);
+router.put("/products/:id", checkAuth, put);    
+router.param("userId", userById);
 
 export default router;
