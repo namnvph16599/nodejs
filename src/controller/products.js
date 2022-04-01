@@ -31,7 +31,7 @@ export const get = async (req, res) => {
 };
 
 export const search = async (req, res) => {
-  console.log(req.query);
+  console.log(req.params.q);
   // try {
   //   const products = await Product.find({ name: req.params.search }).exec();
   //   res.json(products);
@@ -40,17 +40,9 @@ export const search = async (req, res) => {
   //     message: "Không tìm được sản phẩm có name như thế !",
   //   });
   // }
-  // const products = await Product.find(
-  //   { $text: { $search: search } },
-  //   function (err, results) {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       console.log(results);
-  //     }
-  //   }
-  // );
-  // res.json(products);
+  const search = req.params.q;
+  const products = await Product.find({ $text: { $search : search } }).exec();
+  res.json(products);
 };
 
 //Method post api

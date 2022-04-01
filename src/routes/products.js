@@ -10,7 +10,7 @@ router.get("/products", checkAuth, getAll);
 //get products id
 router.get("/products/:id", checkAuth, get);
 
-// router.post("/search?q=:searchContent", checkAuth, search);
+router.post("/search/:q", checkAuth, search);
 
 //Post Product
 router.post(
