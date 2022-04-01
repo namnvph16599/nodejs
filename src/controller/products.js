@@ -30,6 +30,29 @@ export const get = async (req, res) => {
   }
 };
 
+export const search = async (req, res) => {
+  console.log(req.query);
+  // try {
+  //   const products = await Product.find({ name: req.params.search }).exec();
+  //   res.json(products);
+  // } catch (err) {
+  //   res.status(400).json({
+  //     message: "Không tìm được sản phẩm có name như thế !",
+  //   });
+  // }
+  // const products = await Product.find(
+  //   { $text: { $search: search } },
+  //   function (err, results) {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       console.log(results);
+  //     }
+  //   }
+  // );
+  // res.json(products);
+};
+
 //Method post api
 export const post = async (req, res) => {
   try {

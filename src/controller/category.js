@@ -10,6 +10,24 @@ export const post = async (req, res) => {
   }
 };
 
+export const getAll = async (req, res) => {
+  try {
+    const cate = await Category.find().exec();
+    res.json(cate);
+  } catch (error) {
+    res.status(400).json({ message: "Khong list dc category" + error });
+  }
+};
+
+// export const get = async (req, res) => {
+//   try {
+//     const cate = await Category.findOne({ _id: req.params.id}).exec();
+//     res.json(cate);
+//   } catch (error) {
+//     res.status(400).json({ message: "Khong get dc category" + error });
+//   }
+// };
+
 export const getAllWithProducts = async (req, res) => {
   console.log(req.params.id);
   try {

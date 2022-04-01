@@ -6,6 +6,8 @@ const productsShema = new Schema(
       type: String,
       minLength: 5,
       required: true,
+      unique: true,
+      index: true,
     },
     price: {
       type: String,
@@ -17,13 +19,18 @@ const productsShema = new Schema(
     },
     description: {
       type: String,
-    }
-    // category: {
-    //   type: ObjectId,
-    //   ref: "Category",
-    // },
+    },
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    category: {
+      type: ObjectId,
+      ref: "Category",
+    },
   },
   { timestamps: true } //thuộc tính lấy ra create at khi thêm sp và update at khi sửa
 );
+productsShema.index({'$**': 'text'});
 
 export default mongoose.model("Product", productsShema);
