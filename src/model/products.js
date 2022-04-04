@@ -31,6 +31,6 @@ const productsShema = new Schema(
   },
   { timestamps: true } //thuộc tính lấy ra create at khi thêm sp và update at khi sửa
 );
-productsShema.index({'$**': 'text'});
+productsShema.index({ "$**": "text" });
 
 export default mongoose.model("Product", productsShema);

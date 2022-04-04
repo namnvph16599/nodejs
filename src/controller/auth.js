@@ -57,3 +57,26 @@ export const signin = async (req, res) => {
     console.log(err);
   }
 };
+
+export const put = async (req, res) => {
+  const condition = { id: req.params.id };
+  const doc = req.body;
+  const option = { new: true };
+  try {
+    const user = await User.findOneAndUpdate(condition, doc, option);
+    const token = jwt.sign({ _id: user._id }, "123456", { expiresIn: 60 * 60 });
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      message: "Cập nhật thất bại !",
+    });
+  }
+};

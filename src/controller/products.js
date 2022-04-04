@@ -31,18 +31,22 @@ export const get = async (req, res) => {
 };
 
 export const search = async (req, res) => {
-  console.log(req.params.q);
-  // try {
-  //   const products = await Product.find({ name: req.params.search }).exec();
-  //   res.json(products);
-  // } catch (err) {
-  //   res.status(400).json({
-  //     message: "Không tìm được sản phẩm có name như thế !",
-  //   });
-  // }
-  const search = req.params.q;
-  const products = await Product.find({ $text: { $search : search } }).exec();
-  res.json(products);
+  console.log(req.params.name);
+  const searchString = req.params.name ? req.params.name : "";
+  console.log(searchString);
+  try {
+    const products = await Product.find({
+      $text: { $search: searchString },
+    }).exec();
+    res.json(products);
+  } catch (err) {
+    res.status(400).json({
+      message: "Không tìm được sản phẩm có name như thế !",
+    });
+  }
+  // const search = req.params.q;
+  // const products = await Product.find({ $text: { $search : search } }).exec();
+  // res.json(products);
 };
 
 //Method post api

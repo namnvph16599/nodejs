@@ -18,7 +18,7 @@ export const requireSignin = expressJWT({
 });
 
 export const isAuth = (req, res, next) => {
-  const status = req.profile._id == req.auth._id;
+  const status = req.profile.id == req.auth._id;
   if (!status) {
     res.status(400).json({ message: "Ban khong co quyen truy cap" });
   }

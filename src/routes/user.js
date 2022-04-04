@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { checkAuth } from "../middleware/checkAuth";
-import { signin, signup } from "../controller/auth";
+import { put, signin, signup } from "../controller/auth";
 
 const router = Router();
 
@@ -9,6 +9,9 @@ const router = Router();
 router.post("/signin", checkAuth, signin);
 
 router.post("/signup", checkAuth, signup);
+
+router.put("/update-profile/:id", checkAuth, put);
+
 
 // router.delete("/user/:id", checkAuth, remove);
 
