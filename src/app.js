@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-//
 import mongoose from "mongoose";
 //router
 import productsRouter from "./routes/products";
@@ -26,14 +25,14 @@ app.use("/api", categoryRouter);
 mongoose
   .connect("mongodb://127.0.0.1:27017/we16309")
   .then(() => {
-    console.log("Ket noi thanh cong");
+    console.log("Connect database successfully !");
   })
   .catch((err) => console.log(err));
 
 //conection
 const PORT = 3001;
 app.listen(PORT, () => {
-  console.log("server is running", PORT);
+  console.log("Server is running", PORT);
 });
 
 // const server = http.createServer((req, res) => {

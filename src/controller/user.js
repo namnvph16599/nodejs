@@ -6,7 +6,7 @@ export const userById = async (req, res, next, id) => {
     //kiểm tra
     if (!user) {
       res.status(400).json({
-        message: "Khong tim thay user",
+        message: "Không tìm thấy user",
       });
     }
     //nếu mà có user thì sẽ thêm thuộc tính ở req và gán user tìm được vào
@@ -19,7 +19,7 @@ export const userById = async (req, res, next, id) => {
 
 export const isAdmin = async (req, res, next) => {
   if (req.profile.role == 0) {
-    res.status(400).json({ message: "Ban khong phai la admin" });
+    res.status(400).json({ message: "Bạn không phải Admin" });
   }
   next();
 };

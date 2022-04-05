@@ -4,19 +4,17 @@ import { isAdmin, userById } from "../controller/user";
 import { checkAuth, isAuth, requireSignin } from "../middleware/checkAuth";
 const router = Router();
 
-//get products all
-router.get("/products", checkAuth, getAll);
-
+//get
+router.get("/products", checkAuth, getAll); 
 //get products id
 router.get("/products/:id", checkAuth, get);
+router.post("/search", search);
 
-router.get("/search/:name", search);
-
-//Post Product
+//post
 router.post(
   "/products/:userId",
-  userById,
-  requireSignin,
+  userById, //kiểm tra user có tồn tại hay không ?
+  requireSignin, //check token 
   isAuth,
   isAdmin,
   post
@@ -25,8 +23,10 @@ router.post(
 //delete
 router.delete("/products/:id", checkAuth, remove);
 
-//put products
+//put
 router.put("/products/:id", checkAuth, put);
+
+
 router.param("userId", userById);
 
 export default router;

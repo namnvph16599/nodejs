@@ -6,7 +6,7 @@ export const post = async (req, res) => {
     const cate = await new Category(req.body).save();
     res.json(cate);
   } catch (error) {
-    res.status(400).json({ message: "Khong them dc category" + error });
+    res.status(400).json({ message: "Không thêm được category" });
   }
 };
 
@@ -15,7 +15,7 @@ export const getAll = async (req, res) => {
     const cate = await Category.find().exec();
     res.json(cate);
   } catch (error) {
-    res.status(400).json({ message: "Khong list dc category" + error });
+    res.status(400).json({ message: "Khong list dc category"});
   }
 };
 

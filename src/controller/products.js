@@ -5,7 +5,7 @@ import Product from "../model/products";
 // get all products
 export const getAll = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().limit(8);
     res.json(products);
   } catch (error) {
     res.status(400).json({
@@ -31,8 +31,7 @@ export const get = async (req, res) => {
 };
 
 export const search = async (req, res) => {
-  console.log(req.params.name);
-  const searchString = req.params.name ? req.params.name : "";
+  const searchString = req.query.q ? req.query.q : "";
   console.log(searchString);
   try {
     const products = await Product.find({

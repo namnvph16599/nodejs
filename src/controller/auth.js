@@ -7,7 +7,7 @@ export const signup = async (req, res) => {
     const exitsUser = await User.findOne({ email }).exec();
     if (exitsUser) {
       res.json({
-        message: "Email da ton tai",
+        message: "Email đã tồn tại",
       });
     }
     const user = await new User({ email, password, name }).save();
@@ -22,7 +22,7 @@ export const signup = async (req, res) => {
     // res.json(user);
   } catch (err) {
     res.status(400).json({
-      message: "Dang ki that bai",
+      message: "Đăng kí thất bại",
     });
   }
 };
@@ -34,13 +34,13 @@ export const signin = async (req, res) => {
     const user = await User.findOne({ email }).exec();
     if (!user) {
       res.json({
-        message: "Email khong ton tai",
+        message: "Email không tồn tại",
       });
     }
 
     if (!user.authenticate(password)) {
       res.json({
-        message: "Sai mat khau",
+        message: "Sai mật khẩu",
       });
     }
     const token = jwt.sign({ _id: user._id }, "123456", { expiresIn: 60 * 60 });
