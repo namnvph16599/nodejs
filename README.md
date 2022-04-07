@@ -1,10 +1,9 @@
-Setup folder
-Setup environment
-npm i --save-dev nodemon babel-cli babel-preset-env babel-preset-stage-0
+B1 : npm  init -y
+B2 : npm i --save-dev nodemon babel-cli babel-preset-env babel-preset-stage-0
 
-npm i express mongoose
+B3 : npm i express mongoose
 
-create file .babelrc in root folder
+B4 : create file .babelrc in root folder
 
 { "presets": ["env","stage-0"] }
 
@@ -12,6 +11,9 @@ package.json
 
 "script": "nodemon ./src/app.js --exec babel-node -e js"
 
+
+
+https://github.com/datlt2306/web503/blob/we16309/error/babel-node.jpg?raw=true
 alt text
 run command line line : npm i -g babel-cli
 
